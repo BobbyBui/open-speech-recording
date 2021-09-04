@@ -192,7 +192,6 @@ var wantedWords = [
   'K',
   'L',
   'M',
-  'N',
   'O',
   'P',
   'Q',
@@ -205,6 +204,7 @@ var wantedWords = [
   'X',
   'Y',
   'Z',
+
 ];
 
 var fillerWords = [

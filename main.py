@@ -18,8 +18,10 @@ app = Flask(__name__)
 CLOUD_STORAGE_BUCKET = os.environ['CLOUD_STORAGE_BUCKET']
 # [end config]
 
-@app.route("/")
+@app.route("/", methods = ['POST', 'GET'])
 def welcome():
+    #global i
+    #i = request.form['turk']
     session_id = request.cookies.get('session_id')
     if session_id:
         all_done = request.cookies.get('all_done')
@@ -28,7 +30,19 @@ def welcome():
         else:
             return render_template("record.html")
     else:
-        return render_template("welcome.html")
+        return render_template("login.html")
+
+@app.route("/home")
+def home():
+        session_id = request.cookies.get('session_id')
+        if session_id:
+            all_done = request.cookies.get('all_done')
+            if all_done:
+                return render_template("thanks.html")
+            else:
+                return render_template("record.html")
+        else:
+            return render_template("welcome.html")
 
 @app.route("/legal")
 def legal():
@@ -48,18 +62,22 @@ def upload():
         make_response('No session', 400)
     word = request.args.get('word')
     audio_data = request.data
-    filename = word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
-    secure_name = secure_filename(filename)
+    filename = 'data/' + i + '_' + word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
+
+    #secure_name = secure_filename(filename)
     # Left in for debugging purposes. If you comment this back in, the data
     # will be saved to the local file system.
-    with open(secure_name, 'wb') as f:
+    with open(filename, 'wb') as f:
         f.write(audio_data)
+
     # Create a Cloud Storage client.
     #gcs = storage.Client()
     #bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
     #blob = bucket.blob(secure_name)
     #blob.upload_from_string(audio_data, content_type='audio/ogg')
+    print(filename)
     return make_response('All good')
+
 
 # CSRF protection, see http://flask.pocoo.org/snippets/3/.
 @app.before_request

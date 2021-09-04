@@ -1,0 +1,18 @@
+<title>Turk ID</title>
+<script>
+   function letsgo() {
+      var user = document.getElementById("usr").value;
+      user = user.replace(/[^a-zA-Z0-9]/g, "")
+      window.location.href = '/home';
+   }
+</script>
+   <div class="container">
+
+     <form class="form-signin" onsubmit="letsgo()" method="POST">
+       <h2 class="form-signin-heading">Please Enter your Turk id/Name</h2>
+       <label for="usr" class="sr-only">Name/Preferred ID</label>
+       <input type="text" class="form-control" id="usr" name="turk">
+       <button class="btn btn-lg btn-primary btn-block" onclick="letsgo()" type="button">Sign in</button>
+     </form>
+
+   </div> <!-- /container -->
