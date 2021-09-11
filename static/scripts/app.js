@@ -192,6 +192,7 @@ var wantedWords = [
   'K',
   'L',
   'M',
+  'N',
   'O',
   'P',
   'Q',
