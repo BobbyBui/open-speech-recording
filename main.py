@@ -20,15 +20,17 @@ CLOUD_STORAGE_BUCKET = os.environ['CLOUD_STORAGE_BUCKET']
 
 @app.route("/", methods = ['POST', 'GET'])
 def welcome():
-    #global i
-    #i = request.form['turk']
-    session_id = request.cookies.get('session_id')
-    if session_id:
-        all_done = request.cookies.get('all_done')
-        if all_done:
-            return render_template("thanks.html")
+    turk_id = request.cookies.get('turk_id')
+    if turk_id:
+        session_id = request.cookies.get('session_id')
+        if session_id:
+            all_done = request.cookies.get('all_done')
+            if all_done:
+                return render_template("thanks.html")
+            else:
+                return render_template("record.html")
         else:
-            return render_template("record.html")
+            return render_template("welcome.html")
     else:
         return render_template("login.html")
 
@@ -62,7 +64,7 @@ def upload():
         make_response('No session', 400)
     word = request.args.get('word')
     audio_data = request.data
-    filename = 'data/' + i + '_' + word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
+    filename = 'data/' + request.cookies.get('turk_id') + '_' + word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
 
     #secure_name = secure_filename(filename)
     # Left in for debugging purposes. If you comment this back in, the data

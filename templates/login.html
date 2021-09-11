@@ -3,7 +3,8 @@
    function letsgo() {
       var user = document.getElementById("usr").value;
       user = user.replace(/[^a-zA-Z0-9]/g, "")
-      window.location.href = '/home';
+      document.cookie = 'turk_id' + "=" + user + "; path=/"
+      window.location.href = '/';
    }
 </script>
    <div class="container">
@@ -14,11 +15,5 @@
        <input type="text" class="form-control" id="usr" name="turk">
        <button class="btn btn-lg btn-primary btn-block" onclick="letsgo()" type="button">Sign in</button>
      </form>
-     <script type="javascript">
-         function othername() {
-        var input = document.getElementById("usr");
-        alert(input);
-        }
-     </script>
 
    </div> <!-- /container -->

@@ -16,15 +16,6 @@ var canvas = document.querySelector('.visualizer');
 var mediaRecorder = null;
 var mediaStreamSource = null;
 var ignoreAutoPlay = false;
-var turk_id = document.getElementById("usr");
-
-
-/// write to file
-var txtFile = "turk.txt";
-var file = new File(txtFile);
-file.open("w"); // open file with write access
-file.writeln(turk_id);
-file.close();
 
 // disable stop button while not recording
 
