@@ -96,7 +96,7 @@ def generate_csrf_token():
 
 app.jinja_env.globals['csrf_token'] = generate_csrf_token
 # Change this to your own number before you deploy.
-#app.secret_key = os.environ['SESSION_SECRET_KEY']
+app.secret_key = os.environ['SESSION_SECRET_KEY']
 
 if __name__ == "__main__":
     app.run(debug=True)
