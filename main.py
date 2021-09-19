@@ -15,7 +15,7 @@ import uuid
 app = Flask(__name__)
 
 # Configure this environment variable via app.yaml
-CLOUD_STORAGE_BUCKET = os.environ['CLOUD_STORAGE_BUCKET']
+#CLOUD_STORAGE_BUCKET = os.environ['CLOUD_STORAGE_BUCKET']
 # [end config]
 
 @app.route("/", methods = ['POST', 'GET'])
@@ -30,7 +30,7 @@ def welcome():
             else:
                 return render_template("record.html")
         else:
-            return render_template("welcome.html")
+            return render_template("record.html")
     else:
         return render_template("login.html")
 
@@ -44,7 +44,7 @@ def home():
             else:
                 return render_template("record.html")
         else:
-            return render_template("welcome.html")
+            return render_template("record.html")
 
 @app.route("/legal")
 def legal():
@@ -96,7 +96,7 @@ def generate_csrf_token():
 
 app.jinja_env.globals['csrf_token'] = generate_csrf_token
 # Change this to your own number before you deploy.
-app.secret_key = os.environ['SESSION_SECRET_KEY']
+#app.secret_key = os.environ['SESSION_SECRET_KEY']
 
 if __name__ == "__main__":
     app.run(debug=True)
