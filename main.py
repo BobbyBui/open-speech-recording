@@ -99,4 +99,4 @@ app.jinja_env.globals['csrf_token'] = generate_csrf_token
 app.secret_key = os.environ['SESSION_SECRET_KEY']
 
 if __name__ == "__main__":
-    app.run(ssl_context=('adhoc'), debug=True)
+    app.run(ssl_context=('/Users/developer/ssl_cert/server.crt', '/Users/developer/ssl_cert/server.key'), debug=True)
