@@ -65,7 +65,7 @@ def upload():
     word = request.args.get('word')
     audio_data = request.data
     #filename = 'data/' + str(request.cookies.get('turk_id')) + '_' + word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
-    filename = 'data/' + str(request.cookies.get('turk_id')) + '_' + word + '_' + str(session_id) + '_' + '.ogg'
+    filename = 'data/' + str(request.cookies.get('turk_id')) + '_' + word + '_' + str(uuid.uuid4().hex) + '_' + '.ogg'
 
     #secure_name = secure_filename(filename)
     # Left in for debugging purposes. If you comment this back in, the data
