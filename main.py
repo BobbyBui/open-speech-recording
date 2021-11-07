@@ -66,12 +66,11 @@ def upload():
     audio_data = request.data
     #filename = 'data/' + str(request.cookies.get('turk_id')) + '_' + word + '_' + session_id + '_' + uuid.uuid4().hex + '.ogg'
     filename = 'data/' + str(request.cookies.get('turk_id')) + '_' + word + '_' + '.ogg'
-    file = 'data'
 
     #secure_name = secure_filename(filename)
     # Left in for debugging purposes. If you comment this back in, the data
     # will be saved to the local file system.
-    with open(file, 'wb') as f:
+    with open(filename, 'wb') as f:
         f.write(audio_data)
 
     # Create a Cloud Storage client.
